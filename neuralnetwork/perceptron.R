@@ -1,29 +1,4 @@
 
- 
-
- # DADOS DE TREINAMENTO PARA  PORTA LÓGICA 'AND'
-
-  X = matrix(0,4,2)
-
-  X[1,] = c(0,0)
-  X[2,] = c(0,1)
-  X[3,] = c(1,0)
-  X[4,] = c(1,1)
-  
-  Y =  as.matrix(c(0,0,0,1))
-  
-  # TREINAMENTO DO MODELO DURANTE 50 CICLOS E TAXA DE 0.2
-  
-  T = 100
-  alpha = 0.2
-  
-  modelo = perceptron(X,Y,T,alpha)  
-
-  # PLOT DOS ERROS POR ITERAÇÃO 
-  plot(1:T,modelo$erros,type = "l",xlab = "Iteration",ylab = "Sum of Square Errors")
-  
-      
-  # FUNÇÃO PARA TREINAMENTO DO MODELO DURANTE T ITERAÇÕES
   
   perceptron <- function(X,Y,T,alpha){  
     
@@ -36,7 +11,7 @@
     
     X = cbind(X, rep(-1, N))
     
-    # INICIALIAÇÃO ALEATORIA DOS PESOS DA REDE COM VALORES ALEATÓRIOS ENTRE -1 E 1
+    # INICIALIA??O ALEATORIA DOS PESOS DA REDE COM VALORES ALEAT?RIOS ENTRE -1 E 1
     
     wt = as.matrix(runif(M+1,-1,1))
   
@@ -59,7 +34,7 @@
           # CALCULO DA SOMA ACUMULADA DOS PESOS
           s = t(wt) %*% xj  
           
-          # CALCULO DA SAIDA DO PECEPTRON COM FUNÇÃO DE ATIVAÇÃO SIGMOID  
+          # CALCULO DA SAIDA DO PECEPTRON COM FUN??O DE ATIVA??O SIGMOID  
           fj = 1/(1+exp(-s))  
           
           # CALCULO DO ERRO
@@ -75,7 +50,7 @@
       } # TERMINO DO CICLO
       
       sse_t = sum(all_erros^2)
-      writeLines(sprintf("Iteração: %d. Erro: %.2f.",t,sse_t))
+      writeLines(sprintf("Itera??o: %d. Erro: %.2f.",t,sse_t))
       
       
       list_sse = cbind(list_sse,sse_t)  # SOMA ERROs QUADRADOS BNA ITERACAO t
@@ -87,7 +62,32 @@
     
   }  
     
-
+  
+  
+  
+  # DADOS DE TREINAMENTO PARA  PORTA LOGICA 'AND'
+  
+  X = matrix(0,4,2)
+  
+  X[1,] = c(0,0)
+  X[2,] = c(0,1)
+  X[3,] = c(1,0)
+  X[4,] = c(1,1)
+  
+  Y =  as.matrix(c(0,0,0,1))
+  
+  # TREINAMENTO DO MODELO DURANTE 50 CICLOS E TAXA DE 0.2
+  
+  T = 100
+  alpha = 0.2
+  
+  modelo = perceptron(X,Y,T,alpha)  
+  
+  # PLOT DOS ERROS POR ITERA??O 
+  plot(1:T,modelo$erros,type = "l",xlab = "Iteration",ylab = "Sum of Square Errors")
+  
+  
+  # FUN??O PARA TREINAMENTO DO MODELO DURANTE T ITERA??ES
         
         
         
